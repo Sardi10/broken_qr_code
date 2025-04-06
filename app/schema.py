@@ -2,7 +2,7 @@ from pydantic import BaseModel, HttpUrl, Field, conint
 from typing import List, Optional
 
 class QRCodeRequest(BaseModel):
-    ul: HttpUrl = Field(..., description="The URL to encode into the QR code.")
+    url: HttpUrl = Field(..., description="The URL to encode into the QR code.")
     fill_color: str = Field(default="red", description="Color of the QR code.", example="black")
     back_color: str = Field(default="white", description="Background color of the QR code.", example="yellow")
     size: conint(ge=1, le=40) = Field(default=10, description="Size of the QR code from 1 to 40.", example=20) # type: ignore
