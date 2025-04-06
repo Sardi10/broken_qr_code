@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordBearer
 from typing import List
 
 # Import classes and functions from our application's modules
-from app.schema import QRCodeRequest, QRCodeResponse
+from app.schema import QRCodeRequest, QRCodeResponse, Link
 from app.services.qr_service import generate_qr_code, list_qr_codes, delete_qr_code
 from app.utils.common import decode_filename_to_url, encode_url_to_filename, generate_links
 from app.config import QR_DIRECTORY, SERVER_BASE_URL, FILL_COLOR, BACK_COLOR, SERVER_DOWNLOAD_FOLDER
@@ -66,7 +66,7 @@ async def list_qr_codes_endpoint(token: str = Depends(oauth2_scheme)):
     ) for qr_file in qr_files]
     return responses
 
-@router.delete("/qr-codes/{qr_fileame}", status_code=status.HTTP_200_OK, tags=["QR Codes"])
+@router.delete("/qr-codes/{qr_filename}", status_code=status.HTTP_200_OK, tags=["QR Codes"])
 async def delete_qr_code_endpoint(qr_filename: str, token: str = Depends(oauth2_scheme)):
     logging.info(f"Deleting QR code: {qr_filename}.")
     qr_code_path = QR_DIRECTORY / qr_filename
