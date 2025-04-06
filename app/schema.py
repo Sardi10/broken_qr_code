@@ -34,7 +34,7 @@ class Link(BaseModel):
         }
 
 class QRCodeResponse(BaseModel):
-    mssage: str = Field(..., description="A message related to the QR code request.")
+    message: str = Field(..., description="A message related to the QR code request.")
     qr_code_url: HttpUrl = Field(..., description="The URL to the generated QR code.")
     links: List[Link] = Field(default=[], description="HATEOAS links related to the QR code.")
 
