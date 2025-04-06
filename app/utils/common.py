@@ -81,7 +81,7 @@ def decode_filename_to_url(encoded_str: str) -> str:
     padding_needed = 4 - (len(encoded_str) % 4)
     if padding_needed:
         encoded_str += "=" * padding_needed
-    decoded_bytes = base64.urlsafe_b6decode(encoded_str)
+    decoded_bytes = base64.urlsafe_b64decode(encoded_str)
     return decoded_bytes.decode('utf-8')
 
 def generate_links(action: str, qr_filename: str, base_api_url: str, download_url: str) -> List[dict]:
